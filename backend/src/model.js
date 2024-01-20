@@ -18,6 +18,86 @@ export class model {
     }
 }
 
+async get_available_items () {
+    const client = await con.connect();
+    try {
+        const queryText = 'SELECT * FROM public.get_available_food()';
+        const queryParams = [];
+
+        const { rows } = await client.query(queryText, queryParams);
+        return rows;
+    } catch (error) {
+        console.error("Error:", error);
+        throw error;
+    } finally {
+        client.release();
+    }
+}
+
+
+async get_in_progress_orders_by_creator(creator_id) {
+    const client = await con.connect();
+    try {
+        const queryText = 'SELECT * FROM public.get_in_progress_orders_by_creator($1)';
+        const queryParams = [creator_id];
+
+        const { rows } = await client.query(queryText, queryParams);
+        return rows;
+    } catch (error) {
+        console.error("Error:", error);
+        throw error;
+    } finally {
+        client.release();
+    }
+}
+async get_completed_orders_by_receiver(receiver_id) {
+    const client = await con.connect();
+    try {
+      const queryText = 'SELECT * FROM public.get_orders_by_receiver($1, $2)';
+      const queryParams = [receiver_id, true];
+
+        const { rows } = await client.query(queryText, queryParams);
+        return rows;
+    } catch (error) {
+        console.error("Error:", error);
+        throw error;
+    } finally {
+        client.release();
+    }
+}
+
+async get_in_progress_orders_by_receiver(receiver_id) {
+    const client = await con.connect();
+    try {
+        const queryText = 'SELECT * FROM public.get_orders_by_receiver($1, $2)';
+        const queryParams = [receiver_id, false];
+
+        const { rows } = await client.query(queryText, queryParams);
+        return rows;
+    } catch (error) {
+        console.error("Error:", error);
+        throw error;
+    } finally {
+        client.release();
+    }
+}
+
+async get_items_by_creator(creator_id) {
+    const client = await con.connect();
+    try {
+        const queryText = 'SELECT * FROM public.get_food_categories_for_user($1)';
+        const queryParams = [creator_id];
+
+        const { rows } = await client.query(queryText, queryParams);
+        return rows;
+    } catch (error) {
+        console.error("Error:", error);
+        throw error;
+    } finally {
+        client.release();
+    }
+}
+
 async login(email, password) {
     const client = await con.connect();
     try {

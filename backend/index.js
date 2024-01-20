@@ -67,6 +67,53 @@ app.post("/login", async (req, res) => {
     }
 });
 
+// Get all available items for someone looking for food
+app.get("/available", async (req, res) => {
+    try {
+        const response = await defaultController.getAvailableItems();
+        return res.status(200).json(response);
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
+// Get current orders for creator
+app.get("/inprogress/creator/:id", async (req, res) => {
+    const { id } = req.params;
+    try {
+        const response = await defaultController.getInProgressOrdersByCreator(id);
+        return res.status(200).json(response);
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
+// Get current orders for receiver 
+app.get("/inprogress/receiver/:id", async (req, res) => {
+    const { id } = req.params;
+    try {
+        const response = await defaultController.getInProgressOrdersByReceiver(id);
+        return res.status(200).json(response);
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
+// Get order history for creator profile
+app.get("/categories/creator/:id", async (req, res) => {
+    const { id } = req.params;
+    try {
+        const response = await defaultController.getCategoriesByCreator(id);
+        return res.status(200).json(response);
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
 app.get("/pingcheck", (_, res) => {
     res.send("pong");
   });
@@ -74,6 +121,11 @@ app.get("/pingcheck", (_, res) => {
 app.listen(port, () => {
     console.log(`ClassSync backend listening on port ${port}`);
 });
+
+// Place order
+// mark complete
+// delete dish
+// delete order
 
 
 export default pgPool;
