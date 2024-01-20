@@ -45,6 +45,28 @@ app.get("/", (_, res) => {
     res.send("Hello ClassSync!");
 });
 
+app.post("/signup", async (req, res) => {
+    const { firstname, lastname, email, password } = req.body;
+    try {
+        await defaultController.signup(firstname, lastname, email, password);
+        return res.status(200).json({ success: true });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
+app.post("/login", async (req, res) => {
+    const { email, password } = req.body;
+    try {
+        const response = await defaultController.login(email, password);
+        return res.status(200).json(response);
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
 app.get("/pingcheck", (_, res) => {
     res.send("pong");
   });
