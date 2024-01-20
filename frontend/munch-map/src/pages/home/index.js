@@ -1,5 +1,5 @@
 import "./index.css";
 
 export default function Home() {
-  return <div>Hello world!</div>;
+  return <div className="text-xl">Hello world!</div>;
 }
