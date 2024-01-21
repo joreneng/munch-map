@@ -12,7 +12,6 @@ export default function AddFoodBtn() {
         className="add-food-btn rounded-[50%] w-10 h-10 flex justify-center items-center"
         onClick={() => {
           setAdd(true);
-          console.log("clicked");
         }}
       >
         <img src={addIcon} width={20} height={20} />
