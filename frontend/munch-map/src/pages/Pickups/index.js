@@ -108,7 +108,8 @@ export default function Pickups() {
                   type={item.type}
                   description={item.description}
                   vegan={item.vegan}
-                  vegetarian={item.vegetarian}        
+                  vegetarian={item.vegetarian} 
+                  order_details = {item.creator_name + " is ready for pickup"}        
                   handleComplete={() => completeOrder(item.id)}
                   handleDelete={() => deleteOrder(item.id)}
                 />

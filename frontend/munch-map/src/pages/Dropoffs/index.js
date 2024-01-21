@@ -21,7 +21,7 @@ export default function Dropoffs() {
       },
     });
     const data = await response.json();
-    console.log(data);
+    console.log("Data is ", data);
     setFood(data);
     setLoading(false); // Add this line
 
@@ -64,6 +64,7 @@ export default function Dropoffs() {
                   type={item.type}
                   description={item.description}
                   vegan={item.vegan}
+                  order_details = {item.receiver_name + " is picking up"} 
                   vegetarian={item.vegetarian}
                  
                 />
