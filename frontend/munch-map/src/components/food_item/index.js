@@ -1,6 +1,4 @@
 import "./index.css";
-import veganImg from "../../assets/vegan.png";
-import vegetarianImg from "../../assets/vegan.png";
 import save from "../../assets/save.svg";
 import { useRef, useEffect } from "react";
 
@@ -38,10 +36,7 @@ export default function FoodItem({
         className="overflow-hidden"
       />
       <div className="flex flex-col w-full justify-center">
-        <div className="flex flex-row gap-2">
-          {vegan && <img src={veganImg} width={12} />}
-          {vegetarian && <img src={vegetarianImg} width={12} />}
-        </div>
+        <div className="flex flex-row gap-2"></div>
         <div className="flex flex-row justify-between items-center">
           <div className="italic text-lg font-light">{name}</div>
           <img src={save} width={20} />
