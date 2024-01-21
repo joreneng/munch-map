@@ -1,5 +1,6 @@
 import "./index.css";
 import save from "../../assets/save.svg";
+import { dietPictures, foodType } from "../../data";
 import { useRef, useEffect } from "react";
 
 export default function FoodItem({
@@ -9,6 +10,7 @@ export default function FoodItem({
   handleSubmit,
   expiry,
   image,
+  order_details,
   handleDelete,
   handleComplete,
   location,
@@ -18,6 +20,7 @@ export default function FoodItem({
 }) {
   const expiryDay = useRef();
   useEffect(() => {
+    diet.map((item) => console.log(item));
     if (expiry <= 2) {
       expiryDay.current.style.color = "#C8553D";
     } else if (expiry <= 5) {
@@ -28,26 +31,44 @@ export default function FoodItem({
   }, []);
 
   return (
-    <div className="food-item flex flex-row gap-4 p-4 bg-gray-50 rounded-xl mb-2 w-[92%] h-[100px] max-w-[350px]">
+    <div className="food-item flex flex-row gap-4 p-4 bg-gray-50 rounded-xl mb-2 w-[92%] h-[120px] max-w-[350px]">
       <img
         src={`data:image/jpeg;base64,${image}`}
-        width={90}
-        height={90}
+        width={100}
+        height={100}
         className="overflow-hidden"
       />
-      <div className="flex flex-col w-full justify-center">
-        <div className="flex flex-row gap-2"></div>
+      <div className="flex flex-col w-full justify-center mt-1">
         <div className="flex flex-row justify-between items-center">
+          <div className="flex flex-row gap-2">
+            {diet.map((item) => (
+              <img
+                src={dietPictures[item]}
+                alt=""
+                className="overflow-hidden w-3 h-3"
+              />
+            ))}
+          </div>
+          <div className="w-full flex flex-row justify-end gap-2 items-center">
+            {type.map((item) => (
+              <div className="text-[10px] bg-green-100 px-2 rounded-md py-[3px]">
+                {foodType[item]}
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="flex flex-row justify-between mt-2">
           <div className="italic text-lg font-light">{name}</div>
           <img src={save} width={20} />
         </div>
         <div className="flex flex-row justify-between mt-2 items-center">
-          <div className="text-sm">
+          <div className="text-xs">
             Expires in: <span ref={expiryDay}>{expiry} days</span>
+            {order_details && <div>{order_details}</div>}
           </div>
           {orderText && (
             <button
-              className="px-3 py-1 rounded-2xl days-to-expiry text-sm"
+              className="px-3 py-1 rounded-2xl days-to-expiry text-xs"
               onClick={handleSubmit}
             >
               {orderText}

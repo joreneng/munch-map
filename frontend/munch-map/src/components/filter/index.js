@@ -17,7 +17,10 @@ export default function Filter({
   setLocationFilter,
   curLocation,
   setCurLocation,
+  Address,
+  setAddress
 }) {
+  // const [addr, setAddr] = useState(address);
   const handleTypeSelect = (name, active) => {
     if (active) {
       setTypeFilters(typeFilters.filter((item) => item !== name));
@@ -75,6 +78,7 @@ export default function Filter({
             />
           ))}
         </div>
+   {Address}
 
         <div className="text-lg font-medium w-full text-left">Distance</div>
         <div className="filter-container flex flex-row gap-2 flex-wrap w-full justify-start">

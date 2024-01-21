@@ -59,9 +59,19 @@ export default function AddFoodPage({ exitPopup }) {
     const dietArr = diet.map((type) => type.value);
 
 
+    const location = await fetch(
+      `https://geocode.maps.co/search?q=${formValues.address}&api_key=65ac97fadc6e9563144116mcp5edab4`
+    );
+
+
+    const locationData = await location.json();
+
+    const locationToSave = JSON.stringify({
+      Lat: locationData[0].lat, 
+     Lon: locationData[0].lon})
     const body = JSON.stringify({
       creator_id: localStorage.getItem("id"),
-      address: formValues.address,
+      address: locationToSave.toString(),
       type: typeArr,
       expiry: expiry,
       diet: dietArr,

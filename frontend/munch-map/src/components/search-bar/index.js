@@ -15,6 +15,7 @@ export default function SearchBar({
   setLocationFilter,
   curLocation,
   setCurLocation,
+  Address
 }) {
   const [showFilters, setShowFilters] = useState(false);
   const handleSearch = (e) => {
@@ -49,6 +50,7 @@ export default function SearchBar({
       </div>
       {showFilters && (
         <Filter
+          Address={Address}
           showFilters={setShowFilters}
           typeFilters={typeFilters}
           setTypeFilters={setTypeFilters}

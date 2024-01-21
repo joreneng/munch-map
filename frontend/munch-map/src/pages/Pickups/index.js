@@ -1,4 +1,3 @@
-import FoodItem from "../../components/food_item";
 import OrderFoodItem from "../../components/order-food-item";
 import React, { useEffect, useState } from "react";
 
@@ -34,7 +33,8 @@ export default function Pickups() {
 
   const completeOrder = async (orderId) => {
     try {
-      const response = await fetch(`/order/complete/${orderId}`, {
+      console.log("Completing order ", orderId);
+      const response = await fetch(`http://localhost:8080/order/complete/${orderId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -56,8 +56,9 @@ export default function Pickups() {
   };
 
   const deleteOrder = async (orderId) => {
+    console.log("Deleting order ", orderId);
     try {
-      const response = await fetch(`/order/${orderId}`, {
+      const response = await fetch(`http://localhost:8080/order/${orderId}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -102,11 +103,9 @@ export default function Pickups() {
             const currentDate = new Date();
             const diffTime = Math.abs(expiryDate - currentDate);
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
             return (
               <OrderFoodItem
-                key={item.id}
-                id={item.id}
+                id={item.food_id}
                 name={item.name}
                 expiry={diffDays}
                 image={item.image}
@@ -115,8 +114,9 @@ export default function Pickups() {
                 description={item.description}
                 vegan={item.vegan}
                 vegetarian={item.vegetarian}
-                handleComplete={() => completeOrder(item.id)}
-                handleDelete={() => deleteOrder(item.id)}
+                order_details={item.creator_name + " is ready for pickup"}
+                handleComplete={() => completeOrder(item.food_id)}
+                handleDelete={() => deleteOrder(item.food_id)}
               />
             );
           })}

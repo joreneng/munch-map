@@ -10,6 +10,7 @@ export default function OrderFoodItem({
   expiry,
   image,
   handleDelete,
+  order_details,
   handleComplete,
   location,
   type,
@@ -36,12 +37,14 @@ export default function OrderFoodItem({
         height={90}
         className="overflow-hidden"
       />
+      
       <div className="flex flex-col w-full justify-center">
         <div className="flex flex-row justify-between items-center">
           <div className="italic text-lg font-light">{name}</div>
+         
           <button
             className="px-3 py-1 rounded-2xl complete-order text-sm"
-            onClick={handleDelete}
+            onClick={handleComplete}
           >
             Complete
           </button>
@@ -49,6 +52,7 @@ export default function OrderFoodItem({
         <div className="flex flex-row justify-between mt-4 items-center">
           <div className="text-sm">
             Expires in: <span ref={expiryDay}>{expiry} days</span>
+            {order_details && <div>{order_details}</div>}
           </div>
           <button
             className="px-3 py-1 rounded-2xl cancel-order text-sm"
