@@ -26,7 +26,7 @@ export default function SearchBar({
     e.preventDefault();
   };
   return (
-    <div className="w-full justify-center items-center gap-4 flex flex-row p-4">
+    <div className="w-full justify-center items-center gap-4 flex flex-row p-4 mt-16">
       <input
         type="text"
         placeholder="Search..."

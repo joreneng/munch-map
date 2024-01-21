@@ -12,6 +12,7 @@ body::-webkit-scrollbar {
 }
 
 body {
+  background-color: #C8553D;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }

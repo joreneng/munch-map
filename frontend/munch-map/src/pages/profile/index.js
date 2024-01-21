@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.css";
 import profilePic from "../../assets/pictures/profile-pic.png";
 import pending from "../../assets/pending.svg";
@@ -7,6 +7,7 @@ import expired from "../../assets/expired.svg";
 import FoodItem from "../../components/food_item";
 import homeLogo from "../../assets/home-logo.svg";
 import profileLogo from "../../assets/profile-logo.svg";
+import impactLogo from "../../assets/nav-impact.svg";
 import AddFoodBtn from "../../components/add-food-btn";
 
 export default function Profile() {
@@ -41,6 +42,9 @@ export default function Profile() {
         <a href="/profile" className="nav-item">
           <img src={profileLogo} alt={"Profile"} />
         </a>
+        <a href="/impact" className="nav-item">
+          <img src={impactLogo} alt={"Impact"} />
+        </a>
         <AddFoodBtn />
       </nav>
 
@@ -50,7 +54,7 @@ export default function Profile() {
       </div>
 
       <div className="order-section">
-        <div className={"title mb-4"}>
+        <div className={"title mb-4 text-black"}>
           <b>Orders</b>
         </div>
         <div className="order-card ongoing">

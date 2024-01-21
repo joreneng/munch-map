@@ -8,6 +8,7 @@ import "./index.css";
 import Food from "../../components/food";
 import homeLogo from "../../assets/home-logo.svg";
 import profileLogo from "../../assets/profile-logo.svg";
+import impactLogo from "../../assets/nav-impact.svg";
 import AddFoodBtn from "../../components/add-food-btn";
 import { foodType, dietOptions } from "../../data";
 
@@ -123,13 +124,16 @@ const location2 = await fetch(
   };
 
   return (
-    <div className="w-full flex flex-col">
+    <div className="w-full flex flex-col bg-white h-[100vh]">
       <nav className="navigation-bar">
         <a href="/feed" className="nav-item">
           <img src={homeLogo} alt={"Home"} />
         </a>
         <a href="/profile" className="nav-item">
           <img src={profileLogo} alt={"Profile"} />
+        </a>
+        <a href="/impact" className="nav-item">
+          <img src={impactLogo} alt={"Impact"} />
         </a>
         <AddFoodBtn />
       </nav>

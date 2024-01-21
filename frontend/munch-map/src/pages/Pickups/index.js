@@ -7,6 +7,7 @@ import Food from "../../components/food";
 import AddFoodBtn from "../../components/add-food-btn";
 import homeLogo from "../../assets/home-logo.svg";
 import profileLogo from "../../assets/profile-logo.svg";
+import impactLogo from "../../assets/nav-impact.svg";
 
 export default function Pickups() {
   const [food, setFood] = useState([]);
@@ -92,6 +93,9 @@ export default function Pickups() {
         </a>
         <a href="/profile" className="nav-item">
           <img src={profileLogo} alt={"Profile"} />
+        </a>
+        <a href="/impact" className="nav-item">
+          <img src={impactLogo} alt={"Impact"} />
         </a>
         <AddFoodBtn />
       </nav>
