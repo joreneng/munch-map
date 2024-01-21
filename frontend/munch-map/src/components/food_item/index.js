@@ -10,6 +10,7 @@ export default function FoodItem({
   handleSubmit,
   expiry,
   image,
+  order_details,
   handleDelete,
   handleComplete,
   location,
@@ -56,6 +57,7 @@ export default function FoodItem({
         <div className="flex flex-row justify-between mt-2 items-center">
           <div className="text-sm">
             Expires in: <span ref={expiryDay}>{expiry} days</span>
+            {order_details && <div>{order_details}</div>}
           </div>
           {orderText && (
             <button
