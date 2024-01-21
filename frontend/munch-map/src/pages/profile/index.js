@@ -34,120 +34,119 @@ export default function Profile() {
         fetchData();
     }, []);
     return (
-        <div className="profile">
-            <nav className="navigation-bar">
+      <div className="profile">
+        {/* <nav className="navigation-bar">
                 <a href="/feed" className="nav-item"><img src={homeLogo} alt={"Home"}/></a>
                 <a href="/profile" className="nav-item"><img src={profileLogo} alt={"Profile"}/></a>
-            </nav>
+            </nav> */}
 
-            <div className="header">
-                <img src={profilePic} alt="Profile" className="profile-pic"/>
-                <h1 className="profile-name">Martin Li</h1>
-            </div>
-
-            <div className="order-section">
-                <div className={"title"}><b>Orders</b></div>
-                <div className="order-card ongoing">
-                    <div className={"title"}><img src={pending}/> Ongoing</div>
-                    </div>
-                    {
-                        ongoing.map((item) => {
-                            const expiryDate = new Date(item.expiry);
-                            const currentDate = new Date();
-                            const diffTime = Math.abs(expiryDate - currentDate);
-                            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-                            return (
-                                <FoodItem
-                                    id = {item.id}
-                                    name={item.name}
-                                    expiry={diffDays}
-                                    image={item.image}
-                                    location={item.address}
-                                    type={item.type}
-                                    description={item.description}
-                                    vegan={item.vegan}
-                                    vegetarian={item.vegetarian}
-                                    orderText={"Delete"}
-                                    handleSubmit={async (e) => {
-                                        e.preventDefault();
-                                        await fetch(`http://localhost:8080/food/${item.id}`, {
-                                            method: "DELETE",
-                                            headers: {
-                                                "Content-Type": "application/json",
-                                            },
-                                        });
-                                        fetchData();
-                                    }
-                                }
-
-                                />
-                            );
-                        })
-                    }
-                <div className="order-card completed">
-                    <div className={"title"}><img src={checkmark}/> Completed</div>
-                    </div>
-                    {
-                        completed.map((item) => {
-                            const expiryDate = new Date(item.expiry);
-                            const currentDate = new Date();
-                            const diffTime = Math.abs(expiryDate - currentDate);
-                            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-                            return (
-                                <FoodItem
-                                    id = {item.id}
-                                    name={item.name}
-                                    expiry={diffDays}
-                                    image={item.image}
-                                    location={item.address}
-                                    type={item.type}
-                                    description={item.description}
-                                    vegan={item.vegan}
-                                    vegetarian={item.vegetarian}
-                                />
-                            );
-                        })
-                    }
-                <div className="order-card expired">
-                    <div className={"title"}><img src={expired}/> Expired</div>
-                    </div>
-                    {
-                        expiredArr.map((item) => {
-                            const expiryDate = new Date(item.expiry);
-                            const currentDate = new Date();
-                            const diffTime = Math.abs(expiryDate - currentDate);
-                            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-                            return (
-                                <FoodItem
-                                    id = {item.id}
-                                    name={item.name}
-                                    expiry={diffDays}
-                                    image={item.image}
-                                    location={item.address}
-                                    type={item.type}
-                                    description={item.description}
-                                    vegan={item.vegan}
-                                    vegetarian={item.vegetarian}
-                                    orderText={"Delete"}
-                                    handleSubmit={async (e) => {
-                                        e.preventDefault();
-                                        await fetch(`http://localhost:8080/food/${item.id}`, {
-                                            method: "DELETE",
-                                            headers: {
-                                                "Content-Type": "application/json",
-                                            },
-                                        });
-                                        fetchData();
-                                    }
-                                }
-                                />
-                            );
-                        })
-                    }
-            </div>
+        <div className="header">
+          <img src={profilePic} alt="Profile" className="profile-pic" />
+          <h1 className="profile-name">Martin Li</h1>
         </div>
+
+        <div className="order-section">
+          <div className={"title"}>
+            <b>Orders</b>
+          </div>
+          <div className="order-card ongoing">
+            <div className={"title"}>
+              <img src={pending} /> Ongoing
+            </div>
+          </div>
+          {ongoing.map((item) => {
+            const expiryDate = new Date(item.expiry);
+            const currentDate = new Date();
+            const diffTime = Math.abs(expiryDate - currentDate);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+            return (
+              <FoodItem
+                id={item.id}
+                name={item.name}
+                expiry={diffDays}
+                image={item.image}
+                location={item.address}
+                type={item.type}
+                description={item.description}
+                vegan={item.vegan}
+                vegetarian={item.vegetarian}
+                orderText={"Delete"}
+                handleSubmit={async (e) => {
+                  e.preventDefault();
+                  await fetch(`http://localhost:8080/food/${item.id}`, {
+                    method: "DELETE",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                  });
+                  fetchData();
+                }}
+              />
+            );
+          })}
+          <div className="order-card completed">
+            <div className={"title"}>
+              <img src={checkmark} /> Completed
+            </div>
+          </div>
+          {completed.map((item) => {
+            const expiryDate = new Date(item.expiry);
+            const currentDate = new Date();
+            const diffTime = Math.abs(expiryDate - currentDate);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+            return (
+              <FoodItem
+                id={item.id}
+                name={item.name}
+                expiry={diffDays}
+                image={item.image}
+                location={item.address}
+                type={item.type}
+                description={item.description}
+                vegan={item.vegan}
+                vegetarian={item.vegetarian}
+              />
+            );
+          })}
+          <div className="order-card expired">
+            <div className={"title"}>
+              <img src={expired} /> Expired
+            </div>
+          </div>
+          {expiredArr.map((item) => {
+            const expiryDate = new Date(item.expiry);
+            const currentDate = new Date();
+            const diffTime = Math.abs(expiryDate - currentDate);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+            return (
+              <FoodItem
+                id={item.id}
+                name={item.name}
+                expiry={diffDays}
+                image={item.image}
+                location={item.address}
+                type={item.type}
+                description={item.description}
+                vegan={item.vegan}
+                vegetarian={item.vegetarian}
+                orderText={"Delete"}
+                handleSubmit={async (e) => {
+                  e.preventDefault();
+                  await fetch(`http://localhost:8080/food/${item.id}`, {
+                    method: "DELETE",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                  });
+                  fetchData();
+                }}
+              />
+            );
+          })}
+        </div>
+      </div>
     );
 }

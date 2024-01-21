@@ -1,5 +1,6 @@
 import "./index.css";
 import save from "../../assets/save.svg";
+import { dietPictures } from "../../data";
 import { useRef, useEffect } from "react";
 
 export default function FoodItem({
@@ -36,7 +37,11 @@ export default function FoodItem({
         className="overflow-hidden"
       />
       <div className="flex flex-col w-full justify-center">
-        <div className="flex flex-row gap-2"></div>
+        <div className="flex flex-row gap-2">
+          {diet.map((item) => {
+            <img src={dietPictures[item]} alt="" />;
+          })}
+        </div>
         <div className="flex flex-row justify-between items-center">
           <div className="italic text-lg font-light">{name}</div>
           <img src={save} width={20} />
