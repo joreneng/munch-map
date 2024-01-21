@@ -10,13 +10,13 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 export default function AddFoodPage({ exitPopup }) {
-  const foodTypeOptions = foodType.map((option) => ({
+  const foodTypeOptions = foodType.map((option, index) => ({
     label: option,
-    value: option,
+    value: index,
   }));
-  const dietSelectOptions = dietOptions.map((option) => ({
+  const dietSelectOptions = dietOptions.map((option, index) => ({
     label: option,
-    value: option,
+    value: index,
   }));
   const [formValues, setFormValues] = useState({
     name: "",
@@ -52,11 +52,41 @@ export default function AddFoodPage({ exitPopup }) {
     setFormValues({ ...formValues, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Next two lines convert multiselect to array,
     const typeArr = types.map((type) => type.value);
     const dietArr = diet.map((type) => type.value);
+
+
+    const body = JSON.stringify({
+      creator_id: 2,
+      address: formValues.address,
+      type: typeArr,
+      expiry: expiry,
+      diet: dietArr,
+      description: formValues.description,
+      image: base64String,
+      name: formValues.name,
+    });
+
+    console.log("Body is ", body);
+
+   await fetch("http://localhost:8080/food", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: body,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // const id = data.id;
+
+        exitPopup(false);
+      });
+
+
 
     // go back to all foods
     exitPopup(false);
