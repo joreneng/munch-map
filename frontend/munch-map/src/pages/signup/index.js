@@ -4,13 +4,31 @@ import "./index.css";
 
 export default function Signup() {
   const [formValues, setFormValues] = useState({
-    firstName: "",
-    lastName: "",
+    firstname: "",
+    lastname: "",
     email: "",
     password: "",
   });
 
-  const handleSubmit = () => {};
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch("http://localhost:8080/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formValues),
+      });
+
+      if (!response.ok) {
+        throw new Error("Error signing up");
+      }
+
+      window.location.href = "/login";
+    } catch (error) {
+      alert(error.message);
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,8 +45,8 @@ export default function Signup() {
             <input
               required
               type="text"
-              name="firstName"
-              value={formValues.firstName}
+              name="firstname"
+              value={formValues.firstname}
               placeholder="Enter your email"
               onChange={handleChange}
               className="onboard__input bg-gray-100 "
@@ -39,8 +57,8 @@ export default function Signup() {
             <input
               required
               type="text"
-              name="lastName"
-              value={formValues.lastName}
+              name="lastname"
+              value={formValues.lastname}
               placeholder="Enter your email"
               onChange={handleChange}
               className="onboard__input bg-gray-100 "
