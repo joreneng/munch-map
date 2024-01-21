@@ -10,7 +10,6 @@ import homeLogo from "../../assets/home-logo.svg";
 import profileLogo from "../../assets/profile-logo.svg";
 import AddFoodBtn from "../../components/add-food-btn";
 import { foodType, dietOptions } from "../../data";
-import { set } from "date-fns";
 
 export default function Feed() {
   const [food, setFood] = useState([]);
@@ -174,20 +173,37 @@ const location2 = await fetch(
           Loading...
         </div> // Render this while the data is loading
       ) : (
-        <div className="w-full flex flex-col items-center mt-3" key={food}>
+        <div className="w-full flex flex-col items-center mt-3" key={address + food}>
           {food.filter(filtering).map((item) => {
             const expiryDate = new Date(item.expiry);
             const currentDate = new Date();
             const diffTime = Math.abs(expiryDate - currentDate);
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            let result = 0;
 
             try {
-              console.log(JSON.parse(item.address));
-              console.log(JSON.parse(item.address).lat);
-              console.log(JSON.parse(item.address).lon);
+              const addr = JSON.parse(item.address);
+             const lat1 = addr.Lat;
+             const lon1 = addr.Lon;
+
+              const point1 = { latitude: lat1, longitude: lon1 };
+              const point2 = { latitude: lat, longitude: lon };
+              console.log("Point 1 ", point1);
+              console.log("Point 2 ", point2);
+          
+              // Calculate the distance between the two points
+              if (lat && lon && lat1 && lon1) {
+              result = haversine(point1, point2);
+              result = parseFloat(result.toFixed(1));
+              }
+
+
+
             } catch (error) {
               // console.log("Error is ", error)
             }
+
+            
 
             return (
               <FoodItem
@@ -195,7 +211,7 @@ const location2 = await fetch(
                 name={item.name}
                 expiry={diffDays}
                 image={item.image}
-                location={item.address}
+                location={result}
                 type={item.type}
                 description={item.description}
                 diet={item.diet}

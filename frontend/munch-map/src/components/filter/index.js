@@ -20,7 +20,7 @@ export default function Filter({
   address,
   setAddress,
 }) {
-  // const [addr, setAddr] = useState(address);
+  const [addr, setAddr] = useState(address);
   const handleTypeSelect = (name, active) => {
     if (active) {
       setTypeFilters(typeFilters.filter((item) => item !== name));
@@ -57,7 +57,7 @@ export default function Filter({
           <img
             src={exitIcon}
             onClick={() => {
-              setAddress(address);
+              setAddress(addr);
               showFilters(false);
             }}
           />
@@ -90,8 +90,8 @@ export default function Filter({
           <div className="filter-container flex flex-row gap-2 flex-wrap w-full justify-start">
             <input
               type="text"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
+              value={addr}
+              onChange={(e) => setAddr(e.target.value)}
               placeholder="Enter location"
             />
           </div>
