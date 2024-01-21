@@ -21,11 +21,17 @@ export default function Signup() {
       });
 
       if (!response.ok) {
+        console.log("Failed to sign up")
         throw new Error("Error signing up");
+      } else {
+
+
+      console.log("Successfully signed up")
+      window.location.href = "/login";
       }
 
-      window.location.href = "/login";
     } catch (error) {
+      console.log("Failed to sign up catch")
       alert(error.message);
     }
   };
@@ -47,7 +53,7 @@ export default function Signup() {
               type="text"
               name="firstname"
               value={formValues.firstname}
-              placeholder="Enter your email"
+              placeholder="Enter your first name"
               onChange={handleChange}
               className="onboard__input bg-gray-100 "
             />
@@ -59,7 +65,7 @@ export default function Signup() {
               type="text"
               name="lastname"
               value={formValues.lastname}
-              placeholder="Enter your email"
+              placeholder="Enter your last name"
               onChange={handleChange}
               className="onboard__input bg-gray-100 "
             />

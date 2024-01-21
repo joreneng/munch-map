@@ -6,6 +6,7 @@ import Signup from "./pages/signup";
 import Feed from "./pages/feed";
 import Upload from "./pages/upload";
 import Profile from "./pages/profile";
+import OrderHistory from "./pages/orderHistory"
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/upload" element={<Upload />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/orderHistory" element={<OrderHistory />} />
+
         </Routes>
       </BrowserRouter>
     </div>

@@ -4,7 +4,7 @@ import "./index.css";
 
 export default function Login() {
   const [email, setEmail] = useState();
-  const [passoword, setPassword] = useState();
+  const [password, setPassword] = useState();
   const [formValues, setFormValues] = useState({
     email: "",
     password: "",
@@ -16,8 +16,31 @@ export default function Login() {
     setRemember(!remember);
   };
 
-  const handleSubmit = () => {};
+  
+  const handleSubmit = async () => {
+      console.log("Submitting login form");
+      const response = await fetch("http://localhost:8080/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formValues),
+      });
+      console.log("Response is ", response);
 
+      if (!response.ok) {
+        throw new Error("Error Logging in");
+      } else {
+        const data = await response.json();
+        console.log(data);
+        localStorage.setItem("id", JSON.stringify(data.user_id));
+        localStorage.setItem("name", JSON.stringify(data.first_name));
+        window.location.href = "/signup";
+
+      }
+
+   
+  };
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
