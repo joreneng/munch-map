@@ -31,7 +31,7 @@ export default function FoodItem({
   }, []);
 
   return (
-    <div className="food-item flex flex-row gap-4 p-4 bg-gray-50 rounded-xl mb-2 w-[92%] h-[120px] max-w-[350px]">
+    <div className="food-item flex flex-row gap-4 p-4 bg-gray-50 rounded-xl mb-2 w-[92%] h-[125px] max-w-[350px]">
       <img
         src={`data:image/jpeg;base64,${image}`}
         width={100}
@@ -57,15 +57,13 @@ export default function FoodItem({
             ))}
           </div>
         </div>
-        <div className="flex flex-row justify-between mt-2">
+        <div className="flex flex-row justify-between mt-1">
           <div className="italic text-lg font-light">{name}</div>
-          <img src={save} width={20} />
+          <img src={save} width={15} />
         </div>
-        <div className="flex flex-row justify-between mt-2 items-center">
+        <div className="flex flex-row justify-between mt-1 items-center">
           <div className="text-xs">
             Expires in: <span ref={expiryDay}>{expiry} days</span>
-            {location && <div>{location}</div>}
-            {order_details && <div>{order_details}</div>}
           </div>
           {orderText && (
             <button
@@ -75,6 +73,14 @@ export default function FoodItem({
               {orderText}
             </button>
           )}
+        </div>
+        <div className="flex mt-[2px]  text-xs">
+          {location > 0 && (
+            <div className="px-2 py-[2px] bg-gray-300 rounded-xl">
+              {location} km
+            </div>
+          )}
+          {order_details && <div>{order_details}</div>}
         </div>
       </div>
     </div>
