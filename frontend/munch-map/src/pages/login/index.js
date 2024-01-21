@@ -26,7 +26,6 @@ export default function Login() {
   return (
     <div className="flex flex-col w-full max-w-[500px] h-[100vh] gap-2 justify-center items-center">
       <div className="text-xl font-light italic">Hi, Welcome Back! 👋</div>
-      <div>Hello again, you've been missed!</div>
       <form onSubmit={handleSubmit} className="onboard__form-container w-4/5">
         <div className="onboard__inputs">
           <div className="onboard__input-field">
