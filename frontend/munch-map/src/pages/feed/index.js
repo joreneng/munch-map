@@ -5,12 +5,11 @@ import SearchBar from "../../components/search-bar";
 import "./index.css";
 import Food from "../../components/food";
 import AddFoodBtn from "../../components/add-food-btn";
+import { foodType, dietOptions } from "../../data";
 
 export default function Feed() {
-
   const [food, setFood] = useState([]);
   const [loading, setLoading] = useState(true); // Add this line
-
 
   const fetchData = async () => {
     setLoading(true); // Add this line
@@ -25,16 +24,16 @@ export default function Feed() {
     setFood(data);
     setLoading(false); // Add this line
 
-    const location = await fetch("https://geocode.maps.co/search?q=Marine+Drive+Residence-6,Vancouver,+BC&api_key=65ac97fadc6e9563144116mcp5edab4")
+    const location = await fetch(
+      "https://geocode.maps.co/search?q=Marine+Drive+Residence-6,Vancouver,+BC&api_key=65ac97fadc6e9563144116mcp5edab4"
+    );
 
-    const locationData = await location.json()
-    
-      console.log(locationData[0].lat)
-      console.log(locationData[0].lon)
+    const locationData = await location.json();
 
+    console.log(locationData[0].lat);
+    console.log(locationData[0].lon);
   };
   useEffect(() => {
-   
     fetchData();
   }, []);
   const [search, setSearch] = useState("");
@@ -49,10 +48,42 @@ export default function Feed() {
       vegetarian: true,
     },
   ];
+
+  const [typeFilters, setTypeFilters] = useState([]);
+  const [dietFilters, setDietFilters] = useState([]);
+  const [locationFilter, setLocationFilter] = useState([]);
+
+  const filtering = (food) => {
+    if (search && !food.name.toLowerCase().includes(search.toLowerCase())) {
+      return false;
+    }
+
+    if (typeFilters && !typeFilters.includes(foodType[food.type])) {
+      return false;
+    }
+
+    if (dietFilters && !dietFilters.includes(dietOptions[food.diet])) {
+      return false;
+    }
+
+    // Todo: add geo thingy for the filtering
+
+    return true;
+  };
+
   return (
     <div className="w-full flex flex-col">
       <AddFoodBtn />
-      <SearchBar search={search} setSearch={setSearch} />
+      <SearchBar
+        search={search}
+        setSearch={setSearch}
+        typeFilters={typeFilters}
+        setTypeFilters={setTypeFilters}
+        dietFilters={dietFilters}
+        setDietFilters={setDietFilters}
+        locationFilter={locationFilter}
+        setLocationFilter={setLocationFilter}
+      />
       {!search && (
         <div>
           <div className=" text-2xl font-semibold ml-4">Near You</div>
@@ -67,16 +98,14 @@ export default function Feed() {
       {!search && (
         <div className="text-2xl font-semibold ml-4 mt-6">All Munchies</div>
       )}
- {loading ? (
-              <div className="w-full flex flex-col items-center mt-3" key={food}>
-              Loading...</div> // Render this while the data is loading
+      {loading ? (
+        <div className="w-full flex flex-col items-center mt-3" key={food}>
+          Loading...
+        </div> // Render this while the data is loading
       ) : (
-      <div className="w-full flex flex-col items-center mt-3" key={food}>
-        {
-          food
-            .filter((item, key) => {
-              return !search || item.name.toLowerCase().includes(search.toLowerCase());
-            })
+        <div className="w-full flex flex-col items-center mt-3" key={food}>
+          {food
+            .filter((item, key) => filtering(item))
             .map((item) => {
               const expiryDate = new Date(item.expiry);
               const currentDate = new Date();
@@ -111,9 +140,8 @@ export default function Feed() {
                   }}
                 />
               );
-            })
-        }
-      </div>
+            })}
+        </div>
       )}
     </div>
   );
