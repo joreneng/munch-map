@@ -125,7 +125,17 @@ export default function Profile() {
                                     vegan={item.vegan}
                                     vegetarian={item.vegetarian}
                                     orderText={"Delete"}
-
+                                    handleSubmit={async (e) => {
+                                        e.preventDefault();
+                                        await fetch(`http://localhost:8080/food/${item.id}`, {
+                                            method: "DELETE",
+                                            headers: {
+                                                "Content-Type": "application/json",
+                                            },
+                                        });
+                                        fetchData();
+                                    }
+                                }
                                 />
                             );
                         })

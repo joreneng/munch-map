@@ -10,7 +10,7 @@ export default function OrderHistory() {
     const [food, setFood] = useState([]);
 
     const fetchData = async () => {
-        const response = await fetch("http://localhost:8080/orders/history/3", {
+        const response = await fetch(`http://localhost:8080/orders/history/${localStorage.getItem("id")}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

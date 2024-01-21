@@ -35,7 +35,7 @@ export default function Login() {
         console.log(data);
         localStorage.setItem("id", JSON.stringify(data.user_id));
         localStorage.setItem("name", JSON.stringify(data.first_name));
-        window.location.href = "/signup";
+        window.location.href = "/feed";
 
       }
 

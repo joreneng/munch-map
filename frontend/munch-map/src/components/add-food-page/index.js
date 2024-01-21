@@ -60,7 +60,7 @@ export default function AddFoodPage({ exitPopup }) {
 
 
     const body = JSON.stringify({
-      creator_id: 2,
+      creator_id: localStorage.getItem("id"),
       address: formValues.address,
       type: typeArr,
       expiry: expiry,

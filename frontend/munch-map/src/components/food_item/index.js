@@ -11,6 +11,8 @@ export default function FoodItem({
   handleSubmit,
   expiry,
   image,
+  handleDelete,
+  handleComplete,
   location,
   type,
   description,
