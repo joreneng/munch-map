@@ -50,7 +50,7 @@ export default function Profile() {
       </div>
 
       <div className="order-section">
-        <div className={"title mb-4"}>
+        <div className={"title mb-4 text-black"}>
           <b>Orders</b>
         </div>
         <div className="order-card ongoing">
