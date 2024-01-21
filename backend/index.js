@@ -48,6 +48,7 @@ app.get("/", (_, res) => {
 });
 
 app.post("/signup", async (req, res) => {
+    console.log("Signup request received");
     const { firstname, lastname, email, password } = req.body;
     try {
         await defaultController.signup(firstname, lastname, email, password);
@@ -58,7 +59,20 @@ app.post("/signup", async (req, res) => {
     }
 });
 
+app.get("/orders/history/:id", async (req, res) => {
+    const { id } = req.params;
+    try {
+        const response = await defaultController.getCompletedOrdersByReceiver(id);
+        return res.status(200).json(response);
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: "Internal Server Error" });
+
+    }
+});
 app.post("/login", async (req, res) => {
+    console.log("Login request received");
+    console.log(req.body);
     const { email, password } = req.body;
     try {
         const response = await defaultController.login(email, password);

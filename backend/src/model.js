@@ -174,7 +174,7 @@ async get_items_by_creator(creator_id) {
         const queryParams = [creator_id];
 
         const { rows } = await client.query(queryText, queryParams);
-        return rows;
+        return rows[0].get_food_categories_for_user;
     } catch (error) {
         console.error("Error:", error);
         throw error;
