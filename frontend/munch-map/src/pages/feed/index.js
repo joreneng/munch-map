@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import SearchBar from "../../components/search-bar";
 import "./index.css";
 import Food from "../../components/food";
+import AddFoodBtn from "../../components/add-food-btn";
 
 export default function Feed() {
   const [search, setSearch] = useState("");
@@ -32,6 +33,7 @@ export default function Feed() {
   ];
   return (
     <div className="w-full flex flex-col">
+      <AddFoodBtn />
       <SearchBar search={search} setSearch={setSearch} />
       {!search && (
         <div>
