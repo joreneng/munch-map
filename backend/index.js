@@ -37,6 +37,8 @@ const defaultController = new controller();
 
 
 
+
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
@@ -114,18 +116,71 @@ app.get("/categories/creator/:id", async (req, res) => {
     }
 });
 
+app.post("/order/complete/:order_id", async (req, res) => {
+    const { order_id } = req.params;
+    console.log("Order is ", order_id)
+    try {
+        await defaultController.completeOrder(order_id);
+        return res.status(200).json({ success: true });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
+
+app.delete("/order/:id", async (req, res) => {
+    const { id } = req.params;
+    try {
+        await defaultController.deleteOrder(id);
+        return res.status(200).json({ success: true });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+// Place order 
+app.post("/order/:dish_id/:receiver_id", async (req, res) => {
+    const { dish_id, receiver_id } = req.params;
+    try {
+        await defaultController.placeOrder(dish_id, receiver_id);
+        return res.status(200).json({ success: true });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
+
 app.get("/pingcheck", (_, res) => {
     res.send("pong");
   });
+
+app.delete("/food/:id", async (req, res) => {
+    const { id } = req.params;
+    try {
+        await defaultController.deleteFood(id);
+        return res.status(200).json({ success: true });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
+
+});
+
+
 
 app.listen(port, () => {
     console.log(`ClassSync backend listening on port ${port}`);
 });
 
-// Place order
-// mark complete
-// delete dish
-// delete order
+
+
+
+
+
+// insert dish
+// edit dish
 
 
 export default pgPool;

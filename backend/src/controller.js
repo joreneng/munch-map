@@ -5,6 +5,48 @@ export default class controller {
         this.model = new model();
     }
 
+
+    deleteFood(food_id) {
+        return this.model.delete_food(food_id)
+            .then(() => {
+                // Success, no need to return anything
+            }) .catch((err) => {
+
+                console.error(err);
+                throw err; // Rethrow the error to be caught in the route handler
+            });
+    }
+    
+    deleteOrder(order_id) {
+        return this.model.delete_order(order_id)
+            .then(() => {
+                // Success, no need to return anything
+            }) .catch((err) => {
+                console.error(err);
+                throw err; // Rethrow the error to be caught in the route handler
+            });
+    }
+    completeOrder(order_id) {
+        return this.model.complete_order(order_id)
+
+            .then(() => {
+                // Success, no need to return anything
+            }) .catch((err) => {
+                console.error(err);
+                throw err; // Rethrow the error to be caught in the route handler
+            });
+    }
+
+    placeOrder(dish_id, receiver_id) {
+
+        return this.model.place_order(dish_id, receiver_id)
+            .then(() => {
+                // Success, no need to return anything
+            }) .catch((err) => {
+                console.error(err);
+                throw err; // Rethrow the error to be caught in the route handler 
+            });
+    }
     
     signup(firstname, lastname, email, password) {
       return this.model.signup(firstname, lastname, email, password)

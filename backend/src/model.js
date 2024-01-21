@@ -2,6 +2,75 @@ import con from "../index.js";
 
 
 export class model {
+
+    async delete_food(food_id) {
+
+        const client = await con.connect();
+        try {
+          const queryText = 'SELECT * FROM public.delete_food($1)';
+          const queryParams = [food_id];
+          await client.query(queryText, queryParams);
+        }
+        catch (error) {
+          console.error("Error:", error);
+          throw error;
+        }
+        finally {
+          client.release();
+        }
+      }
+    async delete_order(order_id) {
+      const client = await con.connect();
+      try {
+        const queryText = 'SELECT * FROM public.delete_order($1)';
+        const queryParams = [order_id];
+
+        await client.query(queryText, queryParams);
+        // You can optionally return something here if needed
+      }
+      catch (error) {
+        console.error("Error:", error);
+        throw error;
+      }
+      finally {
+        client.release();
+      }
+    }
+
+
+    async complete_order(order_id) {
+      const client = await con.connect();
+      try {
+        const queryText = 'SELECT * FROM public.complete_order($1)';
+        const queryParams = [order_id];
+  
+        await client.query(queryText, queryParams);
+        // You can optionally return something here if needed
+      }
+      catch (error) {
+        console.error("Error:", error);
+        throw error;
+      }
+      finally {
+        client.release();
+      }
+    }
+
+async place_order(dish_id, receiver_id) {
+    const client = await con.connect();
+    try {
+        const queryText = 'SELECT * FROM public.place_order($1, $2)';
+        const queryParams = [dish_id, receiver_id];
+
+        await client.query(queryText, queryParams);
+        // You can optionally return something here if needed
+    } catch (error) {
+        console.error("Error:", error);
+        throw error;
+    } finally {
+        client.release();
+    }
+}
   async signup(firstname, lastname, email, password) {
     const client = await con.connect();
     try {
