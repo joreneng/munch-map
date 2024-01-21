@@ -15,7 +15,8 @@ export default function SearchBar({
   setLocationFilter,
   curLocation,
   setCurLocation,
-  Address
+  address,
+  setAddress,
 }) {
   const [showFilters, setShowFilters] = useState(false);
   const handleSearch = (e) => {
@@ -23,7 +24,6 @@ export default function SearchBar({
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("search");
   };
   return (
     <div className="w-full justify-center items-center gap-4 flex flex-row p-4">
@@ -50,7 +50,8 @@ export default function SearchBar({
       </div>
       {showFilters && (
         <Filter
-          Address={Address}
+          address={address}
+          setAddress={setAddress}
           showFilters={setShowFilters}
           typeFilters={typeFilters}
           setTypeFilters={setTypeFilters}

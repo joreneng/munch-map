@@ -136,19 +136,8 @@ const location2 = await fetch(
       </nav>
 
       <SearchBar
-      Address={
-        <>
-          <div className="text-lg font-medium w-full text-left">Address</div>
-          <div className="filter-container flex flex-row gap-2 flex-wrap w-full justify-start">
-            <input
-              type="text"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              placeholder="Enter location"
-            />
-          </div>
-        </>
-      }
+        address={address}
+        setAddress={setAddress}
         search={search}
         setSearch={setSearch}
         typeFilters={typeFilters}
@@ -193,10 +182,9 @@ const location2 = await fetch(
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
             try {
-              console.log(JSON.parse(item.address))
-              console.log(JSON.parse(item.address).lat)
-              console.log(JSON.parse(item.address).lon)
-
+              console.log(JSON.parse(item.address));
+              console.log(JSON.parse(item.address).lat);
+              console.log(JSON.parse(item.address).lon);
             } catch (error) {
               // console.log("Error is ", error)
             }

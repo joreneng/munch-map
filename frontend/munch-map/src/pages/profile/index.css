@@ -12,7 +12,10 @@
 }
 
 .profile .header {
-    margin: 10px auto;
+    margin-top: 60px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
     padding: 10px;
     text-align: center;
 }
@@ -64,7 +67,6 @@
     background-color: #FFD5C2;
     top: 0;
     position: fixed;
-    left: 35%;
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
     padding: 10px 0;
 }

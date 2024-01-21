@@ -20,7 +20,6 @@ function App() {
           <Route path="/feed" element={<Feed />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/upload" element={<Upload />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/orderHistory" element={<OrderHistory />} />
           <Route path="/dropoffs" element={<Dropoffs />} />
