@@ -4,10 +4,17 @@ import profilePic from "../../assets/pictures/profile-pic.png";
 import pending from "../../assets/pending.svg";
 import checkmark from "../../assets/checkmark.svg";
 import expired from "../../assets/expired.svg";
+import homeLogo from "../../assets/home-logo.svg";
+import profileLogo from "../../assets/profile-logo.svg";
 
 export default function Profile() {
     return (
         <div className="profile">
+            <nav className="navigation-bar">
+                <a href="/feed" className="nav-item"><img src={homeLogo} alt={"Home"}/></a>
+                <a href="/profile" className="nav-item"><img src={profileLogo} alt={"Profile"}/></a>
+            </nav>
+
             <div className="header">
                 <img src={profilePic} alt="Profile" className="profile-pic"/>
                 <h1 className="profile-name">Martin Li</h1>
@@ -28,13 +35,6 @@ export default function Profile() {
                     <p>Bacon, Panini, Pancakes, Cake...</p>
                 </div>
             </div>
-
-            {/*<nav className="navigation-bar">*/}
-            {/*    <a href="#" className="nav-item">Home</a>*/}
-            {/*    <a href="#" className="nav-item">My Foods</a>*/}
-            {/*    <a href="#" className="nav-item">Profile</a>*/}
-            {/*</nav>*/}
-
         </div>
     );
 }

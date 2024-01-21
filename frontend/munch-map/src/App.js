@@ -8,8 +8,9 @@ import Upload from "./pages/upload";
 import Profile from "./pages/profile";
 
 function App() {
-  return (
+    return (
     <div className="App flex justify-center items-center">
+
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />

@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import SearchBar from "../../components/search-bar";
 import "./index.css";
 import Food from "../../components/food";
+import homeLogo from "../../assets/home-logo.svg";
+import profileLogo from "../../assets/profile-logo.svg";
 
 export default function Feed() {
   const [search, setSearch] = useState("");
@@ -32,6 +34,11 @@ export default function Feed() {
   ];
   return (
     <div className="w-full flex flex-col">
+      <nav className="navigation-bar">
+        <a href="/feed" className="nav-item"><img src={homeLogo} alt={"Home"}/></a>
+        <a href="/profile" className="nav-item"><img src={profileLogo} alt={"Profile"}/></a>
+      </nav>
+
       <SearchBar search={search} setSearch={setSearch} />
       {!search && (
         <div>

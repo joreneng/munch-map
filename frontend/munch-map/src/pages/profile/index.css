@@ -57,18 +57,13 @@
     filter: invert(100%);
 }
 
-.navigation-bar {
+.profile .navigation-bar {
     display: flex;
     justify-content: space-around;
-    background-color: #fff;
+    background-color: #FFD5C2;
+    top: 0;
     position: fixed;
-    bottom: 0;
-    width: 100%;
+    left: 35%;
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
     padding: 10px 0;
-}
-
-.nav-item {
-    color: #4A5568;
-    text-decoration: none;
 }
