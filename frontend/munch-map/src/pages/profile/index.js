@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.css";
 import profilePic from "../../assets/pictures/profile-pic.png";
 import pending from "../../assets/pending.svg";
@@ -7,6 +7,7 @@ import expired from "../../assets/expired.svg";
 import FoodItem from "../../components/food_item";
 import homeLogo from "../../assets/home-logo.svg";
 import profileLogo from "../../assets/profile-logo.svg";
+import impactLogo from "../../assets/nav-impact.svg";
 import AddFoodBtn from "../../components/add-food-btn";
 
 export default function Profile() {
@@ -40,6 +41,9 @@ export default function Profile() {
         </a>
         <a href="/profile" className="nav-item">
           <img src={profileLogo} alt={"Profile"} />
+        </a>
+        <a href="/impact" className="nav-item">
+          <img src={impactLogo} alt={"Impact"} />
         </a>
         <AddFoodBtn />
       </nav>

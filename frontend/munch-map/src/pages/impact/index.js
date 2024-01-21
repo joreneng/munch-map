@@ -9,6 +9,8 @@ import savedCarbon from "../../assets/carbon-saved.svg";
 import AddFoodBtn from "../../components/add-food-btn";
 import homeLogo from "../../assets/home-logo.svg";
 import profileLogo from "../../assets/profile-logo.svg";
+import impactLogo from "../../assets/nav-impact.svg";
+import React from "react";
 
 export default function Dashboard() {
   return (
@@ -19,6 +21,9 @@ export default function Dashboard() {
         </a>
         <a href="/profile" className="nav-item">
           <img src={profileLogo} alt={"Profile"} />
+        </a>
+        <a href="/impact" className="nav-item">
+          <img src={impactLogo} alt={"Impact"} />
         </a>
         <AddFoodBtn />
       </nav>
