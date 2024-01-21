@@ -1,6 +1,6 @@
 import "./index.css";
 import veganImg from "../../assets/vegan.png";
-import vegetarianImg from "../../assets/vegetarian.png";
+import vegetarianImg from "../../assets/vegan.png";
 import save from "../../assets/save.svg";
 import { useRef, useEffect } from "react";
 
@@ -16,8 +16,7 @@ export default function FoodItem({
   location,
   type,
   description,
-  vegan,
-  vegetarian,
+  diet,
 }) {
   const expiryDay = useRef();
   useEffect(() => {
@@ -52,7 +51,10 @@ export default function FoodItem({
             Expires in: <span ref={expiryDay}>{expiry} days</span>
           </div>
           {orderText && (
-            <button className="px-3 py-1 rounded-2xl days-to-expiry text-sm" onClick={handleSubmit}>
+            <button
+              className="px-3 py-1 rounded-2xl days-to-expiry text-sm"
+              onClick={handleSubmit}
+            >
               {orderText}
             </button>
           )}

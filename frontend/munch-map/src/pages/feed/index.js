@@ -130,8 +130,7 @@ export default function Feed() {
                   location={item.address}
                   type={item.type}
                   description={item.description}
-                  vegan={item.vegan}
-                  vegetarian={item.vegetarian}
+                  diet={item.diet}
                   orderText={"Order"}
                   handleSubmit={async () => {
                     const response = await fetch(
