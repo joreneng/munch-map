@@ -2,12 +2,13 @@
     font-family: 'Onest', sans-serif;
     color: #333;
     max-width: 480px;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     text-align: center;
+    margin-top: 20px;
 }
 
 .profile .header {
@@ -26,7 +27,7 @@
     border-radius: 50%;
     width: 100px;
     height: 100px;
-    align-items: center;
+    align-items: start;
 }
 
 .profile-name {

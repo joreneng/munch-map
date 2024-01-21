@@ -14,3 +14,5 @@ export const dietOptions = [
   "Lactose-Free",
   "Gluten-Free",
 ];
+
+export const locationOptions = [1, 2, 3, 5];

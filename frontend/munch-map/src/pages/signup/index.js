@@ -11,6 +11,7 @@ export default function Signup() {
   });
 
   const handleSubmit = async () => {
+    console.log("Submitting signup form ", formValues);
     try {
       const response = await fetch("http://localhost:8080/signup", {
         method: "POST",

@@ -7,11 +7,12 @@ import Feed from "./pages/feed";
 import Upload from "./pages/upload";
 import Profile from "./pages/profile";
 import OrderHistory from "./pages/orderHistory"
+import Dropoffs from "./pages/Dropoffs";
+import Pickups from "./pages/Pickups";
 
 function App() {
-    return (
-    <div className="App flex justify-center items-center">
-
+  return (
+    <div className="App flex">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -21,7 +22,8 @@ function App() {
           <Route path="/upload" element={<Upload />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/orderHistory" element={<OrderHistory />} />
-
+          <Route path="/dropoffs" element={<Dropoffs />} />
+          <Route path="/pickups" element={<Pickups />} />
         </Routes>
       </BrowserRouter>
     </div>
