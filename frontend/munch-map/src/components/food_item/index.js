@@ -64,6 +64,7 @@ export default function FoodItem({
         <div className="flex flex-row justify-between mt-2 items-center">
           <div className="text-xs">
             Expires in: <span ref={expiryDay}>{expiry} days</span>
+            {location && <div>{location}</div>}
             {order_details && <div>{order_details}</div>}
           </div>
           {orderText && (
