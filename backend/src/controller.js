@@ -5,6 +5,15 @@ export default class controller {
         this.model = new model();
     }
 
+    insertFood(creator_id, address, type, expiry, diet, description, image, name) {
+        return this.model.insert_food(creator_id, address, type, expiry, diet, description, image, name)
+            .then(() => {
+                // Success, no need to return anything
+            }) .catch((err) => {
+                console.error(err);
+                throw err; // Rethrow the error to be caught in the route handler
+            });
+    }
 
     deleteFood(food_id) {
         return this.model.delete_food(food_id)
@@ -16,7 +25,7 @@ export default class controller {
                 throw err; // Rethrow the error to be caught in the route handler
             });
     }
-    
+
     deleteOrder(order_id) {
         return this.model.delete_order(order_id)
             .then(() => {

@@ -71,6 +71,22 @@ async place_order(dish_id, receiver_id) {
         client.release();
     }
 }
+
+  async insert_food(creator_id, address, type, expiry, diet, description, image, name) {
+    const client = await con.connect();
+    try {
+        const queryText = 'SELECT * FROM public.insert_food($1, $2, $3, $4, $5, $6, $7, $8)';
+        const queryParams = [creator_id, address, type, expiry, diet, description, image, name];
+
+        await client.query(queryText, queryParams);
+        // You can optionally return something here if needed
+    } catch (error) {
+        console.error("Error:", error);
+        throw error;
+    } finally {
+        client.release();
+    }
+  }
   async signup(firstname, lastname, email, password) {
     const client = await con.connect();
     try {

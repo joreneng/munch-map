@@ -167,6 +167,18 @@ app.delete("/food/:id", async (req, res) => {
     }
 
 });
+app.post("/food", async (req, res) => {
+    const { creator_id, address, type, expiry, diet, description, image, name } = req.body;
+    // Now you can use these variables in your code
+    try {
+        await defaultController.insertFood(creator_id, address, type, expiry, diet, description, image, name);
+        return res.status(200).json({ success: true });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: "Internal Server Error" });
+
+    }
+});
 
 
 
