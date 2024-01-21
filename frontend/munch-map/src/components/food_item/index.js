@@ -8,6 +8,7 @@ export default function FoodItem({
   id,
   name,
   orderText,
+  handleSubmit,
   expiry,
   image,
   location,
@@ -49,7 +50,7 @@ export default function FoodItem({
             Expires in: <span ref={expiryDay}>{expiry} days</span>
           </div>
           {orderText && (
-            <button className="px-3 py-1 rounded-2xl days-to-expiry text-sm">
+            <button className="px-3 py-1 rounded-2xl days-to-expiry text-sm" onClick={handleSubmit}>
               {orderText}
             </button>
           )}

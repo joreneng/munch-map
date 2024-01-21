@@ -9,8 +9,10 @@ import { foodType, dietOptions } from "../../data";
 
 export default function Feed() {
   const [food, setFood] = useState([]);
+  const [loading, setLoading] = useState(true); // Add this line
 
   const fetchData = async () => {
+    setLoading(true); // Add this line
     const response = await fetch("http://localhost:8080/available", {
       method: "GET",
       headers: {
@@ -20,6 +22,16 @@ export default function Feed() {
     const data = await response.json();
     console.log(data);
     setFood(data);
+    setLoading(false); // Add this line
+
+    const location = await fetch(
+      "https://geocode.maps.co/search?q=Marine+Drive+Residence-6,Vancouver,+BC&api_key=65ac97fadc6e9563144116mcp5edab4"
+    );
+
+    const locationData = await location.json();
+
+    console.log(locationData[0].lat);
+    console.log(locationData[0].lon);
   };
   useEffect(() => {
     fetchData();
@@ -86,32 +98,51 @@ export default function Feed() {
       {!search && (
         <div className="text-2xl font-semibold ml-4 mt-6">All Munchies</div>
       )}
+      {loading ? (
+        <div className="w-full flex flex-col items-center mt-3" key={food}>
+          Loading...
+        </div> // Render this while the data is loading
+      ) : (
+        <div className="w-full flex flex-col items-center mt-3" key={food}>
+          {food
+            .filter((item, key) => filtering(item))
+            .map((item) => {
+              const expiryDate = new Date(item.expiry);
+              const currentDate = new Date();
+              const diffTime = Math.abs(expiryDate - currentDate);
+              const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-      <div className="w-full flex flex-col items-center mt-3">
-        {food
-          .filter((item, key) => filtering(item))
-          .map((item) => {
-            const expiryDate = new Date(item.expiry);
-            const currentDate = new Date();
-            const diffTime = Math.abs(expiryDate - currentDate);
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-            return (
-              <FoodItem
-                id={item.id}
-                name={item.name}
-                expiry={diffDays}
-                image={item.image}
-                location={item.address}
-                type={item.type}
-                description={item.description}
-                vegan={item.vegan}
-                vegetarian={item.vegetarian}
-                orderText={"Order"}
-              />
-            );
-          })}
-      </div>
+              return (
+                <FoodItem
+                  id={item.id}
+                  name={item.name}
+                  expiry={diffDays}
+                  image={item.image}
+                  location={item.address}
+                  type={item.type}
+                  description={item.description}
+                  vegan={item.vegan}
+                  vegetarian={item.vegetarian}
+                  orderText={"Order"}
+                  handleSubmit={async () => {
+                    const response = await fetch(
+                      `http://localhost:8080/order/${item.id}/3`,
+                      {
+                        method: "POST",
+                        headers: {
+                          "Content-Type": "application/json",
+                        },
+                      }
+                    );
+                    const data = await response.json();
+                    console.log(data);
+                    fetchData();
+                  }}
+                />
+              );
+            })}
+        </div>
+      )}
     </div>
   );
 }

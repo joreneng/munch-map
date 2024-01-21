@@ -7,8 +7,9 @@ export default class controller {
 
     insertFood(creator_id, address, type, expiry, diet, description, image, name) {
         return this.model.insert_food(creator_id, address, type, expiry, diet, description, image, name)
-            .then(() => {
+            .then((res) => {
                 // Success, no need to return anything
+                return res;
             }) .catch((err) => {
                 console.error(err);
                 throw err; // Rethrow the error to be caught in the route handler
