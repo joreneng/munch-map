@@ -12,7 +12,7 @@ import Pickups from "./pages/Pickups";
 
 function App() {
   return (
-    <div className="App flex justify-center items-center">
+    <div className="App flex">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -24,8 +24,6 @@ function App() {
           <Route path="/orderHistory" element={<OrderHistory />} />
           <Route path="/dropoffs" element={<Dropoffs />} />
           <Route path="/pickups" element={<Pickups />} />
-
-
         </Routes>
       </BrowserRouter>
     </div>
