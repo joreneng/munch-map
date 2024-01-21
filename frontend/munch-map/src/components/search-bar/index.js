@@ -13,6 +13,8 @@ export default function SearchBar({
   setDietFilters,
   locationFilter,
   setLocationFilter,
+  curLocation,
+  setCurLocation,
 }) {
   const [showFilters, setShowFilters] = useState(false);
   const handleSearch = (e) => {
@@ -54,6 +56,8 @@ export default function SearchBar({
           setDietFilters={setDietFilters}
           locationFilter={locationFilter}
           setLocationFilter={setLocationFilter}
+          curLocation={curLocation}
+          setCurLocation={setCurLocation}
         />
       )}
     </div>

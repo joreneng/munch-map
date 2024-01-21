@@ -5,7 +5,7 @@ import FilterBtn from "../filter-btn";
 import { locationOptions } from "../../data";
 import FilterLocationBtn from "../filter-location-btn";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function Filter({
   showFilters,
@@ -15,6 +15,8 @@ export default function Filter({
   setDietFilters,
   locationFilter,
   setLocationFilter,
+  curLocation,
+  setCurLocation,
 }) {
   const handleTypeSelect = (name, active) => {
     if (active) {
@@ -34,11 +36,14 @@ export default function Filter({
     }
   };
 
-  const [curLocation, setCurLocation] = useState("");
-
   const handleLocationSelect = (name) => {
-    setLocationFilter(name);
-    setCurLocation(name);
+    if (curLocation === name) {
+      setLocationFilter(null);
+      setCurLocation(null);
+    } else {
+      setLocationFilter(name);
+      setCurLocation(name);
+    }
   };
 
   return (
@@ -52,14 +57,22 @@ export default function Filter({
         <div className="text-lg font-medium w-full text-left">Type</div>
         <div className="filter-container flex flex-row gap-2 flex-wrap">
           {foodType.map((type) => (
-            <FilterBtn name={type} handleSelect={handleTypeSelect} />
+            <FilterBtn
+              name={type}
+              handleSelect={handleTypeSelect}
+              curActive={typeFilters.includes(type)}
+            />
           ))}
         </div>
 
-        <div className="text-lg font-medium w-full text-left">Type</div>
+        <div className="text-lg font-medium w-full text-left">Diet</div>
         <div className="filter-container flex flex-row gap-2 flex-wrap">
           {dietOptions.map((type) => (
-            <FilterBtn name={type} handleSelect={handleDietSelect} />
+            <FilterBtn
+              name={type}
+              handleSelect={handleDietSelect}
+              curActive={dietFilters.includes(type)}
+            />
           ))}
         </div>
 

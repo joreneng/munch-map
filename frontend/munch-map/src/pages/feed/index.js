@@ -51,7 +51,8 @@ export default function Feed() {
 
   const [typeFilters, setTypeFilters] = useState([]);
   const [dietFilters, setDietFilters] = useState([]);
-  const [locationFilter, setLocationFilter] = useState([]);
+  const [locationFilter, setLocationFilter] = useState(0);
+  const [curLocation, setCurLocation] = useState();
 
   const filtering = (food) => {
     if (search && !food.name.toLowerCase().includes(search.toLowerCase())) {
@@ -83,21 +84,29 @@ export default function Feed() {
         setDietFilters={setDietFilters}
         locationFilter={locationFilter}
         setLocationFilter={setLocationFilter}
+        curLocation={curLocation}
+        setCurLocation={setCurLocation}
       />
-      {!search && (
-        <div>
-          <div className=" text-2xl font-semibold ml-4">Near You</div>
-          <Food
-            name={feedData[0].name}
-            expiry={feedData[0].expiry}
-            location={feedData[0].location}
-            description={feedData[0].description}
-          />
-        </div>
-      )}
-      {!search && (
-        <div className="text-2xl font-semibold ml-4 mt-6">All Munchies</div>
-      )}
+      {!search &&
+        typeFilters.length === 0 &&
+        dietFilters.length === 0 &&
+        !locationFilter && (
+          <div>
+            <div className=" text-2xl font-semibold ml-4">Near You</div>
+            <Food
+              name={feedData[0].name}
+              expiry={feedData[0].expiry}
+              location={feedData[0].location}
+              description={feedData[0].description}
+            />
+          </div>
+        )}
+      {!search &&
+        typeFilters.length === 0 &&
+        dietFilters.length === 0 &&
+        !locationFilter && (
+          <div className="text-2xl font-semibold ml-4 mt-6">All Munchies</div>
+        )}
       {loading ? (
         <div className="w-full flex flex-col items-center mt-3" key={food}>
           Loading...
@@ -126,7 +135,9 @@ export default function Feed() {
                   orderText={"Order"}
                   handleSubmit={async () => {
                     const response = await fetch(
-                      `http://localhost:8080/order/${item.id}/${localStorage.getItem("id")}`,
+                      `http://localhost:8080/order/${
+                        item.id
+                      }/${localStorage.getItem("id")}`,
                       {
                         method: "POST",
                         headers: {
