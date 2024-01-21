@@ -105,8 +105,7 @@ export default function Pickups() {
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
             return (
               <OrderFoodItem
-                key={item.id}
-                id={item.id}
+                id={item.food_id}
                 name={item.name}
                 expiry={diffDays}
                 image={item.image}
@@ -115,7 +114,7 @@ export default function Pickups() {
                 description={item.description}
                 vegan={item.vegan}
                 vegetarian={item.vegetarian}
-                order_details = {item.creator_name + " is ready for pickup"}        
+                order_details={item.creator_name + " is ready for pickup"}
                 handleComplete={() => completeOrder(item.food_id)}
                 handleDelete={() => deleteOrder(item.food_id)}
               />
