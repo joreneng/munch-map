@@ -1,7 +1,6 @@
 import "./index.css";
-import veganImg from "../../assets/vegan.png";
-import vegetarianImg from "../../assets/vegetarian.png";
 import save from "../../assets/save.svg";
+import { dietPictures } from "../../data";
 import { useRef, useEffect } from "react";
 
 export default function FoodItem({
@@ -17,8 +16,7 @@ export default function FoodItem({
   location,
   type,
   description,
-  vegan,
-  vegetarian,
+  diet,
 }) {
   const expiryDay = useRef();
   useEffect(() => {
@@ -41,8 +39,9 @@ export default function FoodItem({
       />
       <div className="flex flex-col w-full justify-center">
         <div className="flex flex-row gap-2">
-          {vegan && <img src={veganImg} width={12} />}
-          {vegetarian && <img src={vegetarianImg} width={12} />}
+          {diet.map((item) => {
+            <img src={dietPictures[item]} alt="" />;
+          })}
         </div>
         <div className="flex flex-row justify-between items-center">
           <div className="italic text-lg font-light">{name}</div>
@@ -54,7 +53,10 @@ export default function FoodItem({
             {order_details && <div>{order_details}</div>}
           </div>
           {orderText && (
-            <button className="px-3 py-1 rounded-2xl days-to-expiry text-sm" onClick={handleSubmit}>
+            <button
+              className="px-3 py-1 rounded-2xl days-to-expiry text-sm"
+              onClick={handleSubmit}
+            >
               {orderText}
             </button>
           )}

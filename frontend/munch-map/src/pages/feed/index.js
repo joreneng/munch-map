@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import SearchBar from "../../components/search-bar";
 import "./index.css";
 import Food from "../../components/food";
+import homeLogo from "../../assets/home-logo.svg";
+import profileLogo from "../../assets/profile-logo.svg";
 import AddFoodBtn from "../../components/add-food-btn";
 import { foodType, dietOptions } from "../../data";
 
@@ -59,11 +61,19 @@ export default function Feed() {
       return false;
     }
 
-    if (typeFilters && !typeFilters.includes(foodType[food.type])) {
+    if (
+      typeFilters.length !== 0 &&
+      !typeFilters.includes(foodType[food.type])
+    ) {
+      console.log(typeFilters.length);
       return false;
     }
 
-    if (dietFilters && !dietFilters.includes(dietOptions[food.diet])) {
+    if (
+      dietFilters.length !== 0 &&
+      !dietFilters.includes(dietOptions[food.diet])
+    ) {
+      console.log(dietFilters.length);
       return false;
     }
 
@@ -74,7 +84,16 @@ export default function Feed() {
 
   return (
     <div className="w-full flex flex-col">
-      <AddFoodBtn />
+      <nav className="navigation-bar">
+        <a href="/feed" className="nav-item">
+          <img src={homeLogo} alt={"Home"} />
+        </a>
+        <a href="/profile" className="nav-item">
+          <img src={profileLogo} alt={"Profile"} />
+        </a>
+        <AddFoodBtn />
+      </nav>
+
       <SearchBar
         search={search}
         setSearch={setSearch}
@@ -113,45 +132,42 @@ export default function Feed() {
         </div> // Render this while the data is loading
       ) : (
         <div className="w-full flex flex-col items-center mt-3" key={food}>
-          {food
-            .filter((item, key) => filtering(item))
-            .map((item) => {
-              const expiryDate = new Date(item.expiry);
-              const currentDate = new Date();
-              const diffTime = Math.abs(expiryDate - currentDate);
-              const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+          {food.filter(filtering).map((item) => {
+            const expiryDate = new Date(item.expiry);
+            const currentDate = new Date();
+            const diffTime = Math.abs(expiryDate - currentDate);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-              return (
-                <FoodItem
-                  id={item.id}
-                  name={item.name}
-                  expiry={diffDays}
-                  image={item.image}
-                  location={item.address}
-                  type={item.type}
-                  description={item.description}
-                  vegan={item.vegan}
-                  vegetarian={item.vegetarian}
-                  orderText={"Order"}
-                  handleSubmit={async () => {
-                    const response = await fetch(
-                      `http://localhost:8080/order/${
-                        item.id
-                      }/${localStorage.getItem("id")}`,
-                      {
-                        method: "POST",
-                        headers: {
-                          "Content-Type": "application/json",
-                        },
-                      }
-                    );
-                    const data = await response.json();
-                    console.log(data);
-                    window.location.href = "/pickups";
-                  }}
-                />
-              );
-            })}
+            return (
+              <FoodItem
+                id={item.id}
+                name={item.name}
+                expiry={diffDays}
+                image={item.image}
+                location={item.address}
+                type={item.type}
+                description={item.description}
+                diet={item.diet}
+                orderText={"Order"}
+                handleSubmit={async () => {
+                  const response = await fetch(
+                    `http://localhost:8080/order/${
+                      item.id
+                    }/${localStorage.getItem("id")}`,
+                    {
+                      method: "POST",
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                    }
+                  );
+                  const data = await response.json();
+                  console.log(data);
+                  window.location.href = "/pickups";
+                }}
+              />
+            );
+          })}
         </div>
       )}
     </div>
