@@ -7,6 +7,7 @@ import Feed from "./pages/feed";
 import Upload from "./pages/upload";
 import Profile from "./pages/profile";
 import OrderHistory from "./pages/orderHistory"
+import Dashboard from "./pages/impact";
 import Dropoffs from "./pages/Dropoffs";
 import Pickups from "./pages/Pickups";
 
@@ -24,6 +25,7 @@ function App() {
           <Route path="/orderHistory" element={<OrderHistory />} />
           <Route path="/dropoffs" element={<Dropoffs />} />
           <Route path="/pickups" element={<Pickups />} />
+          <Route path="/impact" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
     </div>
