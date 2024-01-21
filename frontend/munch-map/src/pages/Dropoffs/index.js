@@ -73,7 +73,7 @@ export default function Dropoffs() {
                   name={item.name}
                   expiry={diffDays}
                   image={item.image}
-                  location={item.address}
+                  // location={item.address}
                   type={item.type}
                   diet={item.diet}
                   description={item.description}

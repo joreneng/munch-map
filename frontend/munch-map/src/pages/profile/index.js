@@ -15,7 +15,7 @@ export default function Profile() {
   const [completed, setCompleted] = useState([]);
   const [expiredArr, setExpired] = useState([]);
   const fetchData = async () => {
-    const response = await fetch("http://localhost:8080/categories/creator/2", {
+    const response = await fetch(`http://localhost:8080/categories/creator/${localStorage.getItem("id")}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -70,7 +70,7 @@ export default function Profile() {
               name={item.name}
               expiry={diffDays}
               image={item.image}
-              location={item.address}
+              // location={item.address}
               type={item.type}
               diet={item.diet}
               description={item.description}
@@ -107,7 +107,7 @@ export default function Profile() {
               name={item.name}
               expiry={diffDays}
               image={item.image}
-              location={item.address}
+              // location={item.address}
               type={item.type}
               diet={item.diet}
               description={item.description}
@@ -133,7 +133,7 @@ export default function Profile() {
               name={item.name}
               expiry={diffDays}
               image={item.image}
-              location={item.address}
+              // location={item.address}
               type={item.type}
               description={item.description}
               vegan={item.vegan}

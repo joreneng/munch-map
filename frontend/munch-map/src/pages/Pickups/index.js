@@ -111,7 +111,7 @@ export default function Pickups() {
                 name={item.name}
                 expiry={diffDays}
                 image={item.image}
-                location={item.address}
+                // location={item.address}
                 type={item.type}
                 description={item.description}
                 vegan={item.vegan}
