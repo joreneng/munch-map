@@ -17,8 +17,8 @@ export default function Filter({
   setLocationFilter,
   curLocation,
   setCurLocation,
-  Address,
-  setAddress
+  address,
+  setAddress,
 }) {
   // const [addr, setAddr] = useState(address);
   const handleTypeSelect = (name, active) => {
@@ -54,7 +54,13 @@ export default function Filter({
       <div className="popup">
         <div className="flex flex-row justify-between w-full">
           <div className="italic text-xl font-light">Select Filters</div>
-          <img src={exitIcon} onClick={() => showFilters(false)} />
+          <img
+            src={exitIcon}
+            onClick={() => {
+              setAddress(address);
+              showFilters(false);
+            }}
+          />
         </div>
 
         <div className="text-lg font-medium w-full text-left">Type</div>
@@ -78,7 +84,18 @@ export default function Filter({
             />
           ))}
         </div>
-   {Address}
+
+        <>
+          <div className="text-lg font-medium w-full text-left">Address</div>
+          <div className="filter-container flex flex-row gap-2 flex-wrap w-full justify-start">
+            <input
+              type="text"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              placeholder="Enter location"
+            />
+          </div>
+        </>
 
         <div className="text-lg font-medium w-full text-left">Distance</div>
         <div className="filter-container flex flex-row gap-2 flex-wrap w-full justify-start">
