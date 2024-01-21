@@ -68,6 +68,7 @@ export default function Profile() {
                 image={item.image}
                 location={item.address}
                 type={item.type}
+                diet={item.diet}
                 description={item.description}
                 vegan={item.vegan}
                 vegetarian={item.vegetarian}
@@ -104,6 +105,7 @@ export default function Profile() {
                 image={item.image}
                 location={item.address}
                 type={item.type}
+                diet={item.diet}
                 description={item.description}
                 vegan={item.vegan}
                 vegetarian={item.vegetarian}
@@ -131,6 +133,7 @@ export default function Profile() {
                 type={item.type}
                 description={item.description}
                 vegan={item.vegan}
+                diet={item.diet}
                 vegetarian={item.vegetarian}
                 orderText={"Delete"}
                 handleSubmit={async (e) => {

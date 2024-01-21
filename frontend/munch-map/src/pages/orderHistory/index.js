@@ -51,6 +51,7 @@ export default function OrderHistory() {
                                     image={item.image}
                                     location={item.address}
                                     type={item.type}
+                                    diet={item.diet}
                                     description={item.description}
                                     vegan={item.vegan}
                                     vegetarian={item.vegetarian}
