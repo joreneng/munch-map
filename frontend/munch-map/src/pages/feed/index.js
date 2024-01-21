@@ -192,9 +192,10 @@ const location2 = await fetch(
               console.log("Point 2 ", point2);
           
               // Calculate the distance between the two points
+              if (lat && lon && lat1 && lon1) {
               result = haversine(point1, point2);
               result = parseFloat(result.toFixed(1));
-
+              }
 
 
 
