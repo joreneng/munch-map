@@ -8,6 +8,7 @@ export default function SearchBar({ search, setSearch }) {
     setSearch(e.target.value);
   };
   const handleSubmit = (e) => {
+    e.preventDefault();
     console.log("search");
   };
   return (

@@ -32,22 +32,10 @@ export default function Feed() {
       name: "Griled Cheese",
       description:
         "I like grilled chesses, I like grilled chesses,I like grilled chesses,I like grilled chesses,I like grilled chesses, I like grilled chesses, I like grilled chesses, I like grilled chesses",
-      expiry: "4 days",
+      expiry: 4,
       location: "3km",
       vegan: false,
       vegetarian: true,
-    },
-    {
-      name: "Chicken Nuggest",
-      expiry: "5 days",
-      vegan: true,
-      vegetarian: true,
-    },
-    {
-      name: "Sample",
-      expiry: "4 days",
-      vegan: false,
-      vegetarian: false,
     },
   ];
   return (
