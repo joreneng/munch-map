@@ -1,5 +1,5 @@
-import vegetarianImg from "../../assets/vegetarian.png";
 import save from "../../assets/save.svg";
+import vegetarianImg from "../../assets/vegetarian.png";
 import React, { useState, useEffect, useRef } from "react";
 
 import "./index.css";

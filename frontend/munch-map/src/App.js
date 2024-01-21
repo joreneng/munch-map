@@ -12,7 +12,7 @@ import Pickups from "./pages/Pickups";
 
 function App() {
   return (
-    <div className="App flex">
+    <div className="App flex justify-center">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
