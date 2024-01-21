@@ -1,0 +1,22 @@
+.dashboard {
+    background-color: #C8553D;
+    width: 100vw;
+    height: 100vh;
+}
+
+.dashboard .container {
+    fill: #F28F3B;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.saved {
+    margin: 3px auto;
+}
+
+.info {
+    margin: 0px auto;
+    margin-bottom: 3px;
+}
