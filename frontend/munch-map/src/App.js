@@ -8,7 +8,7 @@ import Upload from "./pages/upload";
 import Profile from "./pages/profile";
 import OrderHistory from "./pages/orderHistory"
 import Dropoffs from "./pages/Dropoffs";
-import Pickups from "./pages/pickups";
+import Pickups from "./pages/Pickups";
 
 function App() {
   return (
