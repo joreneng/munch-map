@@ -21,8 +21,6 @@ export default function AddFoodPage({ exitPopup }) {
   const [formValues, setFormValues] = useState({
     name: "",
     address: "",
-    type: "",
-    expiry: "",
     diet: "",
     description: "",
   });
