@@ -124,7 +124,7 @@ const location2 = await fetch(
   };
 
   return (
-    <div className="w-full flex flex-col">
+    <div className="w-full flex flex-col bg-white h-[100vh]">
       <nav className="navigation-bar">
         <a href="/feed" className="nav-item">
           <img src={homeLogo} alt={"Home"} />
