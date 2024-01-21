@@ -21,6 +21,16 @@
     font-weight: 400;
 }
 
+.onboard__input-field select {
+    width: 100%;
+    border: 1px solid #EAECF0;
+    padding: 10px 16px;
+    margin: 10px 0 20px 0;
+    color: #969696;
+    font-size: 16px;
+    font-weight: 400;
+}
+
 .onboard__checkbox-container {
     width: 100%;
     display: flex;

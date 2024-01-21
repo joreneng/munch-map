@@ -1,5 +1,6 @@
 import vegetarianImg from "../../assets/vegetarian.png";
 import save from "../../assets/save.svg";
+import React, { useState, useEffect, useRef } from "react";
 
 import "./index.css";
 
@@ -12,8 +13,18 @@ export default function Food({
   diet,
   description,
 }) {
+  const expiryDay = useRef();
+  useEffect(() => {
+    if (expiry <= 2) {
+      expiryDay.current.style.backgroundColor = "#C8553D";
+    } else if (expiry <= 5) {
+      expiryDay.current.style.backgroundColor = "#F28F3B";
+    } else {
+      expiryDay.current.style.backgroundColor = "#588B88";
+    }
+  }, []);
   return (
-    <div className="food-card relative flex flex-col w-[92%] max-w-[350px] h-[320px] rounded-3xl bg-gray-50 overflow-hidden mx-auto mt-3">
+    <div className="food-card relative flex flex-col w-[92%] max-w-[350px] h-[320px] rounded-3xl bg-gray-50 overflow-hidden mx-auto mt-">
       <div className="absolute top-4 left-4 bg-gray-100 px-3 text-sm py-1 rounded-2xl">
         {location}
       </div>
@@ -24,8 +35,8 @@ export default function Food({
         className="overflow-hidden max-h-[150px] bg-red-200"
       />
       <div className="flex flex-row justify-between mx-4 mt-4">
-        <div className="px-3 py-1 rounded-2xl days-to-expiry text-sm">
-          Expires in: {expiry}
+        <div ref={expiryDay} className="px-3 py-1 rounded-2xl text-sm">
+          Expires in: {expiry} days
         </div>
         <img src={save} width={20} />
       </div>

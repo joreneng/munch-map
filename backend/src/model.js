@@ -78,7 +78,8 @@ async place_order(dish_id, receiver_id) {
         const queryText = 'SELECT * FROM public.insert_food($1, $2, $3, $4, $5, $6, $7, $8)';
         const queryParams = [creator_id, address, type, expiry, diet, description, image, name];
 
-        await client.query(queryText, queryParams);
+        const response = await client.query(queryText, queryParams);
+        return response.rows[0].insert_food;
         // You can optionally return something here if needed
     } catch (error) {
         console.error("Error:", error);
@@ -174,7 +175,7 @@ async get_items_by_creator(creator_id) {
         const queryParams = [creator_id];
 
         const { rows } = await client.query(queryText, queryParams);
-        return rows;
+        return rows[0].get_food_categories_for_user;
     } catch (error) {
         console.error("Error:", error);
         throw error;

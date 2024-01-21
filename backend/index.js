@@ -39,7 +39,8 @@ const defaultController = new controller();
 
 
 
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '100mb' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
@@ -48,6 +49,7 @@ app.get("/", (_, res) => {
 });
 
 app.post("/signup", async (req, res) => {
+    console.log("Signup request received");
     const { firstname, lastname, email, password } = req.body;
     try {
         await defaultController.signup(firstname, lastname, email, password);
@@ -58,7 +60,20 @@ app.post("/signup", async (req, res) => {
     }
 });
 
+app.get("/orders/history/:id", async (req, res) => {
+    const { id } = req.params;
+    try {
+        const response = await defaultController.getCompletedOrdersByReceiver(id);
+        return res.status(200).json(response);
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: "Internal Server Error" });
+
+    }
+});
 app.post("/login", async (req, res) => {
+    console.log("Login request received");
+    console.log(req.body);
     const { email, password } = req.body;
     try {
         const response = await defaultController.login(email, password);
@@ -171,8 +186,8 @@ app.post("/food", async (req, res) => {
     const { creator_id, address, type, expiry, diet, description, image, name } = req.body;
     // Now you can use these variables in your code
     try {
-        await defaultController.insertFood(creator_id, address, type, expiry, diet, description, image, name);
-        return res.status(200).json({ success: true });
+        const response = await defaultController.insertFood(creator_id, address, type, expiry, diet, description, image, name);
+        return res.status(200).json(response);
     } catch (err) {
         console.error(err);
         return res.status(500).json({ error: "Internal Server Error" });

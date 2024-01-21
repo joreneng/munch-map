@@ -1,0 +1,28 @@
+.popup-overlay {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .popup {
+    z-index: 2;
+    max-width: 500px;
+    max-height: 90vh;
+    width: 90vw;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    background-color: white;
+    border: 1px solid var(--neutrals-96, #f4f4f6);
+    border-radius: 20px;
+    color: black;
+    padding: 16px;
+  }
