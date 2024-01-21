@@ -5,6 +5,8 @@ import SearchBar from "../../components/search-bar";
 import "./index.css";
 import Food from "../../components/food";
 import AddFoodBtn from "../../components/add-food-btn";
+import homeLogo from "../../assets/home-logo.svg";
+import profileLogo from "../../assets/profile-logo.svg";
 
 export default function Pickups() {
   const [food, setFood] = useState([]);
@@ -34,12 +36,15 @@ export default function Pickups() {
   const completeOrder = async (orderId) => {
     try {
       console.log("Completing order ", orderId);
-      const response = await fetch(`http://localhost:8080/order/complete/${orderId}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `http://localhost:8080/order/complete/${orderId}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Error completing order");
@@ -79,20 +84,17 @@ export default function Pickups() {
     }
   };
 
-  const feedData = [
-    {
-      name: "Griled Cheese",
-      description:
-        "I like grilled chesses, I like grilled chesses,I like grilled chesses,I like grilled chesses,I like grilled chesses, I like grilled chesses, I like grilled chesses, I like grilled chesses",
-      expiry: 4,
-      location: "3km",
-      vegan: false,
-      vegetarian: true,
-    },
-  ];
-
   return (
     <div className="w-full flex flex-col">
+      <nav className="navigation-bar">
+        <a href="/feed" className="nav-item">
+          <img src={homeLogo} alt={"Home"} />
+        </a>
+        <a href="/profile" className="nav-item">
+          <img src={profileLogo} alt={"Profile"} />
+        </a>
+        <AddFoodBtn />
+      </nav>
       <div className="text-2xl font-semibold ml-4 mt-6">All Pickups</div>
       {loading ? (
         <div className="w-full flex flex-col items-center mt-3">Loading...</div>
