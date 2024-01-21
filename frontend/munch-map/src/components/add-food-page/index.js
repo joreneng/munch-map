@@ -21,21 +21,15 @@ export default function AddFoodPage({ exitPopup }) {
   const [formValues, setFormValues] = useState({
     name: "",
     address: "",
-    diet: "",
     description: "",
   });
   const [expiry, setExpiry] = useState(new Date());
   const [types, setTypes] = useState(null);
   const [diet, setDiet] = useState(null);
-  const [base64String, setBase64String] = useState("");
   const exit = () => {
     exitPopup(false);
   };
 
-  const handleSelectChange = (e) => {
-    const { value } = e.target;
-    console.log(value);
-  };
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
